@@ -1,0 +1,184 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY26SU04",
+      "reportVersionAtImport": {
+        "visual": "2.8.0",
+        "report": "3.2.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Lipetral3492691791422652.json",
+      "reportVersionAtImport": {
+        "visual": "2.8.0",
+        "report": "3.2.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "96cabd156a79d35957b4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_localidade"
+              }
+            },
+            "Property": "filial_id"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_localidade",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "filial_id"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU04",
+          "path": "BaseThemes/CY26SU04.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "bg_historico.png",
+          "path": "bg_historico.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_planejamento.png",
+          "path": "bg_planejamento.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_visao_geral.png",
+          "path": "bg_visao_geral.png",
+          "type": "Image"
+        },
+        {
+          "name": "Lipetral3492691791422652.json",
+          "path": "Lipetral3492691791422652.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

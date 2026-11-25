@@ -1,0 +1,11 @@
+expression 'DirectLake - LH_Teste' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/18c7a711-c0f6-4987-a814-a4b05309954d/86cfb782-b6af-41d9-af59-223a7110e452", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 5d4d216a-ce30-4125-96e0-66a25c5da6d1
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[fato_clima_diario]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[silver_openmeteo_clima]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[bronze_openmeteo_clima_raw]"}},"objectType":"Table"}]
+

@@ -1,0 +1,133 @@
+table gold_clima_filial
+	lineageTag: 05d51171-4a88-4dc5-afcd-4f8acb958345
+	sourceLineageTag: [dbo].[gold_clima_filial]
+
+	column filial_id
+		dataType: string
+		isHidden
+		lineageTag: 897f2f04-d38c-4543-812f-bc7c4f95d0a2
+		sourceLineageTag: filial_id
+		summarizeBy: none
+		sourceColumn: filial_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column filial_nome
+		dataType: string
+		isHidden
+		lineageTag: 1dfd3c50-d0bd-4c80-9ba2-58eb736e3cf4
+		sourceLineageTag: filial_nome
+		summarizeBy: none
+		sourceColumn: filial_nome
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_referencia
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 9aa24743-e1a2-4972-8369-c20c682b3e2e
+		sourceLineageTag: data_referencia
+		summarizeBy: none
+		sourceColumn: data_referencia
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo
+		dataType: string
+		lineageTag: d6d4e9c5-0df9-4dcd-bd9b-8b9c23de0cf8
+		sourceLineageTag: tipo
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column temperatura_max
+		dataType: double
+		lineageTag: aaa81c6e-738d-4430-a123-b6896c95ff10
+		sourceLineageTag: temperatura_max
+		summarizeBy: sum
+		sourceColumn: temperatura_max
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column temperatura_min
+		dataType: double
+		lineageTag: 3dd10b88-0f59-4cc9-ad76-c8436ee34f1a
+		sourceLineageTag: temperatura_min
+		summarizeBy: sum
+		sourceColumn: temperatura_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column precipitacao_mm
+		dataType: double
+		lineageTag: 18a41c3b-5ee0-42d6-9e4b-8fb66bf6fa09
+		sourceLineageTag: precipitacao_mm
+		summarizeBy: sum
+		sourceColumn: precipitacao_mm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vento_max_kmh
+		dataType: double
+		lineageTag: 609e3633-f1e2-489e-a58e-a7ced4749d12
+		sourceLineageTag: vento_max_kmh
+		summarizeBy: sum
+		sourceColumn: vento_max_kmh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column chuva_acum_7d
+		dataType: double
+		lineageTag: c57b4a11-1150-46a7-b008-34559a0a36ca
+		sourceLineageTag: chuva_acum_7d
+		summarizeBy: sum
+		sourceColumn: chuva_acum_7d
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column chuva_acum_30d
+		dataType: double
+		lineageTag: cba86399-478f-466c-84cb-3369c1182974
+		sourceLineageTag: chuva_acum_30d
+		summarizeBy: sum
+		sourceColumn: chuva_acum_30d
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dia_favoravel_campo
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f68a3d89-a831-4548-b272-8faffbe62c59
+		sourceLineageTag: dia_favoravel_campo
+		summarizeBy: none
+		sourceColumn: dia_favoravel_campo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_clima_filial = entity
+		mode: directLake
+		source
+			entityName: gold_clima_filial
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_Teste'
+

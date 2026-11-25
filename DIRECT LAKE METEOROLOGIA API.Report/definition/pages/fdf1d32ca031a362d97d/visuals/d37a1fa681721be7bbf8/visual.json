@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "d37a1fa681721be7bbf8",
+  "position": {
+    "x": 900,
+    "y": 192,
+    "z": 3500,
+    "height": 30,
+    "width": 348,
+    "tabOrder": 3500
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "■ ",
+                    "textStyle": {
+                      "fontSize": "14px",
+                      "color": "#A9CC9A"
+                    }
+                  },
+                  {
+                    "value": "Favorável     ",
+                    "textStyle": {
+                      "fontSize": "10px",
+                      "color": "#68736A"
+                    }
+                  },
+                  {
+                    "value": "■ ",
+                    "textStyle": {
+                      "fontSize": "14px",
+                      "color": "#F4C7C3"
+                    }
+                  },
+                  {
+                    "value": "Desfavorável",
+                    "textStyle": {
+                      "fontSize": "10px",
+                      "color": "#68736A"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "right"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
