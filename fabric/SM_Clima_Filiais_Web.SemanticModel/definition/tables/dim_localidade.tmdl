@@ -1,0 +1,68 @@
+table dim_localidade
+	lineageTag: 4f39beab-ef48-46ea-88ff-2a902acb2a03
+	sourceLineageTag: [dbo].[dim_localidade]
+
+	column filial_id
+		dataType: string
+		lineageTag: e76fece4-66e5-4b3d-a2d3-c1959ca62c4f
+		sourceLineageTag: filial_id
+		summarizeBy: none
+		sourceColumn: filial_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column filial_nome
+		dataType: string
+		lineageTag: 7915f990-d0c5-4951-a293-7cb45899855c
+		sourceLineageTag: filial_nome
+		summarizeBy: none
+		sourceColumn: filial_nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column uf
+		dataType: string
+		lineageTag: ba577891-1b63-47f0-b53c-ae40af9fa967
+		sourceLineageTag: uf
+		summarizeBy: none
+		sourceColumn: uf
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: 5d7332b2-ebcb-448e-bc4c-da5f0c2e4bc6
+		sourceLineageTag: latitude
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: latitude
+
+		changedProperty = DataCategory
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 86a11547-8165-4453-b32d-9544f48442ad
+		sourceLineageTag: longitude
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: longitude
+
+		changedProperty = DataCategory
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_localidade = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("amy33hj3ayrexh4cfyxsc6migy-cgt4oghwycdutkauusyfgcmvju.datawarehouse.fabric.microsoft.com", "LH_Teste"),
+				    Tabela = Fonte{[Schema = "dbo", Item = "dim_localidade"]}[Data]
+				in
+				    Tabela
+

@@ -1,0 +1,93 @@
+table Medidas
+	lineageTag: b7ae30e8-9c9a-46d1-92c5-dcb109a19046
+
+	measure 'Chuva Total (mm)' = ```
+			SUM ( gold_clima_filial[precipitacao_mm] )
+			
+			
+			```
+		lineageTag: 4cad7d28-c300-4605-b52f-52f51d3a5aaa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Temp Máx Média' = ```
+			AVERAGE ( gold_clima_filial[temperatura_max] )
+			
+			```
+		lineageTag: a7db46c0-f982-44e7-ba1b-73a6b8a91be7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Temp Mín Média' = AVERAGE ( gold_clima_filial[temperatura_min] )
+		lineageTag: 454dbe0b-d06e-47c8-9b28-03aa7b21ac39
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Chuva Observada (mm)' =
+			
+			CALCULATE ( [Chuva Total (mm)], gold_clima_filial[tipo] = "observado" )
+		lineageTag: 6e546c1c-c908-47da-be67-801c46a7b93f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Chuva Prevista (mm)' =
+			
+			CALCULATE ( [Chuva Total (mm)], gold_clima_filial[tipo] = "previsao" )
+		lineageTag: ce96b5ec-0de0-4bd2-b4c3-2b94f256d53d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dias Favoráveis' =
+			
+			CALCULATE ( COUNTROWS ( gold_clima_filial ), gold_clima_filial[dia_favoravel_campo] = TRUE () )
+		formatString: 0
+		lineageTag: 45e2a996-9e37-4b26-be88-7124ab786617
+
+	measure '% Dias Favoráveis' =
+			
+			DIVIDE ( [Dias Favoráveis], COUNTROWS ( gold_clima_filial ) )
+		lineageTag: c109f4b7-aa83-4749-bff2-e9013d02e5cc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Chuva Acum 30d (mm)' =
+			
+			VAR _ultimaData = MAX ( dim_calendario[data] )
+			RETURN
+			    CALCULATE ( SUM ( gold_clima_filial[chuva_acum_30d] ), dim_calendario[data] = _ultimaData )
+		lineageTag: 25efdcd6-d96e-4899-94f0-96fd21184cd9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Chuva Próx 7 Dias (mm)' =
+			
+			CALCULATE (
+			    [Chuva Total (mm)],
+			    REMOVEFILTERS ( dim_calendario ),
+			    DATESBETWEEN ( dim_calendario[data], TODAY (), TODAY () + 6 )
+			)
+		lineageTag: 190a8304-5739-45aa-8fc3-51925ece3ecd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cor Dia Campo' =
+			
+			IF ( [Dias Favoráveis] > 0, "#A9CC9A", "#F4C7C3" )
+		lineageTag: 18781ece-4758-42b0-9874-5307ce33f43c
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 1165d8a9-f205-4c2c-8118-023822b374da
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 34eb98416b77463aaa5767df3016edf7
+

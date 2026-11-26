@@ -1,0 +1,8 @@
+relationship f3b9e2cf-78a5-a809-8a7d-578c1ea00794
+	fromColumn: gold_clima_filial.data_referencia
+	toColumn: dim_calendario.data
+
+relationship f1a46d0d-d6c6-074e-a073-b5c18aba80ad
+	fromColumn: gold_clima_filial.filial_id
+	toColumn: dim_localidade.filial_id
+

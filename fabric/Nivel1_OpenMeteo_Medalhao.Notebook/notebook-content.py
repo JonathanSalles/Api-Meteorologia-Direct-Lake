@@ -772,8 +772,14 @@ display(
 # =============================================================================
 import sempy.fabric as fabric
 
+# 1) Modelo Direct Lake (relatório interno): reframing
 fabric.refresh_dataset(dataset="SM_Clima_Filiais")
 print("Modelo SM_Clima_Filiais atualizado ✔")
+
+# 2) Cópia em modo Importação (relatório público do portfólio, "Publicar na Web"
+#    não aceita Direct Lake): recarrega os dados a partir do endpoint SQL.
+fabric.refresh_dataset(dataset="SM_Clima_Filiais_Web", refresh_type="full")
+print("Modelo SM_Clima_Filiais_Web atualizado ✔")
 
 # METADATA ********************
 

@@ -18,7 +18,8 @@ Open-Meteo API ──► Notebook PySpark ──► Lakehouse (Delta) ──► 
 | `fabric/Nivel1_OpenMeteo_Medalhao.Notebook/` | Notebook principal (PySpark): ingestão, MERGE incremental, qualidade, Gold e calendário |
 | `fabric/Teste1.Notebook/` | Primeira versão (protótipo) — mantida para mostrar a evolução e o bug corrigido |
 | `fabric/PL_OpenMeteo_Diario.DataPipeline/` | Pipeline de orquestração: executa o notebook todo dia às 05:00 (horário de Brasília) |
-| `fabric/SM_Clima_Filiais.SemanticModel/` | Modelo semântico em TMDL (tabelas, relacionamentos e medidas DAX) |
+| `fabric/SM_Clima_Filiais.SemanticModel/` | Modelo semântico em TMDL (tabelas, relacionamentos e medidas DAX) — Direct Lake |
+| `fabric/SM_Clima_Filiais_Web.SemanticModel/` | Mesmo modelo em modo **Importação**, usado pela versão pública do relatório (ver seção 5) |
 | `DIRECT LAKE METEOROLOGIA API.pbip` + `.Report/` | Relatório Power BI em formato PBIP/PBIR (conexão ao vivo com o modelo) |
 | `scripts/gen_report.py` | Script que gerou o layout do relatório (fundos SVG→PNG + páginas e visuais PBIR) |
 
@@ -84,7 +85,20 @@ versão nova das tabelas Delta logo após a carga, e o relatório mostra os dado
 da atualização automática do Direct Lake.
 
 Fluxo diário: **05:00** pipeline → notebook (API → Bronze → fato → Gold → calendário → OPTIMIZE) →
-reframing do modelo → relatório atualizado.
+reframing do modelo Direct Lake → refresh do modelo de importação → relatórios atualizados.
+
+## 5. Versão pública (portfólio)
+
+O recurso **Publicar na Web** do Power BI não aceita modelos Direct Lake. Para exibir o relatório
+publicamente existe uma cópia em modo **Importação**, `SM_Clima_Filiais_Web`, com as mesmas tabelas,
+relacionamentos e medidas, lendo as tabelas Gold/dimensões pelo endpoint SQL do Lakehouse. O
+relatório `CLIMA NAS FILIAIS - WEB` é um clone do relatório principal ligado a esse modelo.
+
+| | Interno | Público |
+|---|---|---|
+| Modelo | `SM_Clima_Filiais` (Direct Lake) | `SM_Clima_Filiais_Web` (Importação) |
+| Relatório | `DIRECT LAKE METEOROLOGIA API` | `CLIMA NAS FILIAIS - WEB` (Publicar na Web) |
+| Atualização | reframing ao fim do notebook | refresh completo ao fim do notebook |
 
 ## Observações
 

@@ -1,0 +1,163 @@
+table dim_calendario
+	lineageTag: 6d938164-a298-4cb9-99d7-9bb79de92966
+	sourceLineageTag: [dbo].[dim_calendario]
+	dataCategory: Time
+
+	column data
+		dataType: dateTime
+		isKey
+		formatString: General Date
+		lineageTag: e13b6529-849f-452a-a5c6-320f293c899f
+		sourceLineageTag: data
+		summarizeBy: none
+		sourceColumn: data
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 54176b7a-7f0f-49e3-89e4-dd1c1dc39c7a
+		sourceLineageTag: ano
+		summarizeBy: none
+		sourceColumn: ano
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 29ab9cb2-35e8-4c5a-b0fe-da48dad24ec9
+		sourceLineageTag: mes
+		summarizeBy: none
+		sourceColumn: mes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes
+		dataType: string
+		lineageTag: 1a450192-df9e-476b-9513-2f5b5ba476cf
+		sourceLineageTag: nome_mes
+		summarizeBy: none
+		sourceColumn: nome_mes
+		sortByColumn: mes_fy_ordem
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes
+		dataType: string
+		lineageTag: 48a30db4-86ad-4508-9b64-7612297f4144
+		sourceLineageTag: ano_mes
+		summarizeBy: none
+		sourceColumn: ano_mes
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: int64
+		formatString: 0
+		lineageTag: badb94ac-b675-4595-a5ef-4000c56226c1
+		sourceLineageTag: dia
+		summarizeBy: none
+		sourceColumn: dia
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana_num
+		dataType: int64
+		formatString: 0
+		lineageTag: b22f2851-3a19-4df5-a482-5559d613e630
+		sourceLineageTag: dia_semana_num
+		summarizeBy: none
+		sourceColumn: dia_semana_num
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_dia_semana
+		dataType: string
+		lineageTag: 2e01f7e9-dbcc-4cb2-9459-bd44857c0336
+		sourceLineageTag: nome_dia_semana
+		summarizeBy: none
+		sourceColumn: nome_dia_semana
+		sortByColumn: dia_semana_num
+
+		changedProperty = IsHidden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column fim_de_semana
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ee125a43-d4b1-4605-ab3d-5430d003cd88
+		sourceLineageTag: fim_de_semana
+		summarizeBy: none
+		sourceColumn: fim_de_semana
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_fiscal
+		dataType: int64
+		formatString: 0
+		lineageTag: 3aa80c32-ece4-46ef-8eb9-81bb9dc35177
+		sourceLineageTag: ano_fiscal
+		summarizeBy: none
+		sourceColumn: ano_fiscal
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column fy
+		dataType: string
+		lineageTag: 3bc57e76-fb64-4ef0-bbc5-1f73e1ecaaf1
+		sourceLineageTag: fy
+		summarizeBy: none
+		sourceColumn: fy
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_fy_ordem
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e961717-91e6-438a-a8fc-03a75009a321
+		sourceLineageTag: mes_fy_ordem
+		summarizeBy: none
+		sourceColumn: mes_fy_ordem
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_calendario = m
+		mode: import
+		source =
+				let
+				    Fonte = Sql.Database("amy33hj3ayrexh4cfyxsc6migy-cgt4oghwycdutkauusyfgcmvju.datawarehouse.fabric.microsoft.com", "LH_Teste"),
+				    Tabela = Fonte{[Schema = "dbo", Item = "dim_calendario"]}[Data]
+				in
+				    Tabela
+
+	changedProperty = IsHidden
+
