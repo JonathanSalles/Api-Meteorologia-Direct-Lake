@@ -17,7 +17,7 @@ Open-Meteo API ──► Notebook PySpark ──► Lakehouse (Delta) ──► 
 |---|---|
 | `fabric/Nivel1_OpenMeteo_Medalhao.Notebook/` | Notebook principal (PySpark): ingestão, MERGE incremental, qualidade, Gold e calendário |
 | `fabric/Teste1.Notebook/` | Primeira versão (protótipo) — mantida para mostrar a evolução e o bug corrigido |
-| `fabric/PL_OpenMeteo_Diario.DataPipeline/` | Pipeline de orquestração com agendamento diário (ver *Pendências*) |
+| `fabric/PL_OpenMeteo_Diario.DataPipeline/` | Pipeline de orquestração: executa o notebook todo dia às 05:00 (horário de Brasília) |
 | `fabric/SM_Clima_Filiais.SemanticModel/` | Modelo semântico em TMDL (tabelas, relacionamentos e medidas DAX) |
 | `DIRECT LAKE METEOROLOGIA API.pbip` + `.Report/` | Relatório Power BI em formato PBIP/PBIR (conexão ao vivo com o modelo) |
 | `scripts/gen_report.py` | Script que gerou o layout do relatório (fundos SVG→PNG + páginas e visuais PBIR) |
@@ -72,11 +72,22 @@ Para abrir: Power BI Desktop → abrir o `.pbip`. O relatório usa conexão ao v
 publicado no workspace (`definition.pbir`); para usar em outro ambiente, troque a conexão para o seu
 modelo semântico.
 
-## Pendências conhecidas
+## 4. Atualização automática
 
-- **Orquestração:** o pipeline `PL_OpenMeteo_Diario` tem agendamento diário (05:00), mas ainda não
-  possui atividades, e o agendamento do notebook está desativado. Próximo passo: adicionar uma
-  atividade *Notebook* apontando para `Nivel1_OpenMeteo_Medalhao` (com alerta em caso de falha).
+O pipeline `PL_OpenMeteo_Diario` roda **todo dia às 05:00 (America/Sao_Paulo)** e executa o notebook
+`Nivel1_OpenMeteo_Medalhao` (timeout de 2 h, até 2 novas tentativas com 5 min de intervalo).
+O agendamento próprio do notebook fica desativado para não haver execução dupla.
+
+Como o modelo é **Direct Lake**, não há refresh de importação. A última célula do notebook chama
+`sempy.fabric.refresh_dataset("SM_Clima_Filiais")`, que faz o *reframing*: o modelo passa a ler a
+versão nova das tabelas Delta logo após a carga, e o relatório mostra os dados do dia sem depender
+da atualização automática do Direct Lake.
+
+Fluxo diário: **05:00** pipeline → notebook (API → Bronze → fato → Gold → calendário → OPTIMIZE) →
+reframing do modelo → relatório atualizado.
+
+## Observações
+
 - Os `filial_id` são códigos de exemplo; as coordenadas são aproximadas (centro de cada cidade).
 
 ## Tecnologias

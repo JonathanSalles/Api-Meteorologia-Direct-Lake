@@ -761,3 +761,23 @@ display(
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+# =============================================================================
+# CÉLULA 16 — ATUALIZAR O MODELO SEMÂNTICO (Direct Lake)
+# Depois de gravar as tabelas Delta, pede ao modelo SM_Clima_Filiais que passe a
+# ler a versão nova (reframing). Garante que o relatório mostre os dados do dia
+# logo após a execução agendada, sem depender da atualização automática.
+# =============================================================================
+import sempy.fabric as fabric
+
+fabric.refresh_dataset(dataset="SM_Clima_Filiais")
+print("Modelo SM_Clima_Filiais atualizado ✔")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

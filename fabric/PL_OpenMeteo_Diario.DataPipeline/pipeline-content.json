@@ -1,5 +1,22 @@
 {
   "properties": {
-    "activities": []
+    "activities": [
+      {
+        "name": "Executar Nivel1_OpenMeteo_Medalhao",
+        "type": "TridentNotebook",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 300,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "notebookId": "376c959c-65ac-4967-8f91-56231920d3a6",
+          "workspaceId": "18c7a711-c0f6-4987-a814-a4b05309954d"
+        }
+      }
+    ]
   }
 }
