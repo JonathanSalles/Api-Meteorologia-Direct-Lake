@@ -109,6 +109,20 @@
           "selector": {
             "id": "default"
           }
+        },
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.Temp Máx Média"
+          }
         }
       ],
       "label": [

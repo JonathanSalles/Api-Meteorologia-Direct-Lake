@@ -5,7 +5,7 @@
     "x": 1087.9802955665025,
     "y": 100.19704433497537,
     "z": 2400,
-    "height": 75.369458128078819,
+    "height": 75.36945812807882,
     "width": 185.32019704433498,
     "tabOrder": 2400
   },
@@ -108,6 +108,20 @@
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.% Dias Favoráveis"
           }
         }
       ],

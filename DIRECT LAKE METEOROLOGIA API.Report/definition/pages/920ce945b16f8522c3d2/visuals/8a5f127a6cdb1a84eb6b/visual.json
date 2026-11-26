@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "8a5f127a6cdb1a84eb6b",
   "position": {
-    "x": 524.25531914893622,
-    "y": 96.291793313069917,
+    "x": 524.2553191489362,
+    "y": 96.29179331306992,
     "z": 2000,
-    "height": 79.756838905775084,
+    "height": 79.75683890577508,
     "width": 181.88449848024317,
     "tabOrder": 2000
   },
@@ -108,6 +108,20 @@
           },
           "selector": {
             "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.Chuva Observada (mm)"
           }
         }
       ],
